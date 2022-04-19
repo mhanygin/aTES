@@ -1,0 +1,56 @@
+@startuml services
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!startsub taskTracker
+System(taskTracker, "task-tracker")
+database taskTrackerDB
+!endsub
+!startsub taskAdmin
+System(taskAdmin, "task-admin")
+!endsub
+!startsub auth
+System(auth, "auth")
+database authDB
+!endsub
+!startsub accountingAdmin
+System(accountingAdmin, "accounting-admin")
+!endsub
+!startsub accounting
+System(accounting, "accounting")
+database accountingDB
+!endsub
+!startsub analyticAdmin
+System(analyticAdmin, "analytic-admin")
+!endsub
+!startsub analytic
+System(analytic, "analytic")
+database analyticDB
+!endsub
+!startsub eventBus
+System(eventBus, "eventBus")
+!endsub
+!startsub sender
+System(sender, "sender")
+!endsub
+
+Rel(auth, authDB, "")
+
+Rel(taskAdmin, taskTracker, "")
+
+Rel(taskTracker, eventBus, "")
+Rel(taskTracker, taskTrackerDB, "")
+
+Rel(analytic, eventBus, "")
+Rel(analytic, analyticDB, "")
+
+Rel(accounting, eventBus, "")
+Rel(accounting, accountingDB, "")
+
+Rel(sender, eventBus, "")
+
+Rel(taskAdmin, auth, "")
+Rel(accountingAdmin, auth, "")
+Rel(analyticAdmin, auth, "")
+
+@enduml
