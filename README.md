@@ -15,3 +15,7 @@ https://lms.tough-dev.school/materials/1cf623e0c65f4123bf6a809b4cd89e12/
 ## Работа с задачей
 
 ![](./docs/render/task_flow.png "работа с задачей")
+
+## Отправка писем
+
+![](./docs/render/mail_flow.png "отправка писем")

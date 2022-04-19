@@ -1,11 +1,14 @@
 @startuml task_flow
 
+!startsub addTask
 user --> taskTracker: POST add task
 taskTracker --> taskTrackerDB: check user in JWT
 taskTracker --> user: invalid user
 taskTracker --> taskTrackerDB: create task
 taskTracker --> user: task_id
+!endsub
 
+!startsub assignTask
 user --> taskTracker: POST assign task_id
 taskTracker --> taskTrackerDB: check user in JWT
 taskTracker --> user: invalid user
@@ -13,7 +16,9 @@ taskTracker --> taskTrackerDB: assign tasks
 eventBus --> accounting: processing "task"
 eventBus --> analytic: processing "task"
 taskTracker --> eventBus: event "task"
+!endsub
 
+!startsub completeTask
 user --> taskTracker: POST complete task_id
 taskTracker --> taskTrackerDB: check user in JWT
 taskTracker --> user: invalid user
@@ -21,5 +26,6 @@ taskTracker --> taskTrackerDB: complete task
 taskTracker --> eventBus: event "task"
 eventBus --> accounting: processing "task"
 eventBus --> analytic: processing "task"
+!endsub
 
 @enduml

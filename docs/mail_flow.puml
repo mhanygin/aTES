@@ -1,0 +1,6 @@
+@startuml mail_flow
+
+eventBus --> sender: event "mail"
+sender --> user: send mail
+
+@enduml

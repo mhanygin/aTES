@@ -1,5 +1,6 @@
 @startuml auth_flow
 
+!startsub addUser
 user --> auth: add user
 auth --> user: form for date
 user --> auth: form with date
@@ -8,10 +9,13 @@ eventBus --> taskTracker: processing "user"
 eventBus --> accounting: processing "user"
 eventBus --> analytic: processing "user"
 auth --> user: OK
+!endsub
 
+!startsub login
 user --> auth: login
 auth --> user: form for login/password
 user --> auth: form with login/password
 auth --> user: JWT token
+!endsub
 
 @enduml
