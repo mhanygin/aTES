@@ -3,7 +3,6 @@
 title событие добавления нового пользователя
 
 object add_user {
-user_id
 login = mail
 first_name
 last_name
@@ -18,8 +17,7 @@ title событие назначения задачи
 
 object task_assigned {
 task_id
-user_id
-assigned_at
+login
 }
 
 @enduml
@@ -29,11 +27,33 @@ assigned_at
 title событие выполнения задачи
 object task_completed {
 task_id
-user_id
-completed_at
+login
 }
 
 @enduml
+
+@startuml task_with_cost
+
+title событие с оплатой
+object task_completed {
+task_id
+login
+cost
+}
+
+@enduml
+
+@startuml manager_report
+
+title событие с заработке менеджера
+
+object manager_report {
+login
+cost
+}
+
+@enduml
+
 
 @startuml mail
 

@@ -5,8 +5,7 @@
 Boundary(user, "пользователь") {
 }
 
-Boundary(task, "задача") {
-
+Boundary(task, "управление задачами") {
 }
 
 Boundary(accounting, "аккаунтинг") {
@@ -14,5 +13,11 @@ Boundary(accounting, "аккаунтинг") {
 
 Boundary(analytic, "аналитика") {
 }
+
+Rel(user, task, "")
+Rel(user, accounting, "")
+Rel(user, analytic, "")
+
+Rel(accounting, analytic, "")
 
 @enduml

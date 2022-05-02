@@ -9,7 +9,8 @@ taskTracker --> taskTrackerDB: create task for user
 taskTracker --> taskTrackerDB: assign task
 taskTracker --> eventBus: produce "task assigned"
 eventBus --> accounting: consume "task assigned"
-eventBus --> analytic: consume "task assigned"
+accounting --> eventBus: produce "task with cost"
+eventBus --> analytic: consume "task with cost"
 taskTracker --> user: task_id
 !endsub
 
@@ -24,7 +25,8 @@ taskTracker --> taskTrackerDB: check user in JWT
 taskTracker --> taskTrackerDB: assign tasks
 taskTracker --> eventBus: produce "task assigned"
 eventBus --> accounting: consume "task assigned"
-eventBus --> analytic: consume "task assigned"
+accounting --> eventBus: produce "task with cost"
+eventBus --> analytic: consume "task with cost"
 !endsub
 
 @enduml
@@ -38,7 +40,8 @@ taskTracker --> taskTrackerDB: check user in JWT
 taskTracker --> taskTrackerDB: complete task
 taskTracker --> eventBus: produce "task completed"
 eventBus --> accounting: consume "task completed"
-eventBus --> analytic: consume "task completed"
+accounting --> eventBus: produce "task with cost"
+eventBus --> analytic: consume "task with cost"
 !endsub
 
 @enduml

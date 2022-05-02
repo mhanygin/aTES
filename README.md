@@ -26,6 +26,12 @@ https://lms.tough-dev.school/materials/1cf623e0c65f4123bf6a809b4cd89e12/
 
 ![](./docs/render/complete_task_flow.png "работа с задачей")
 
+## Работа заработанного
+
+![](./docs/render/user_accouting_flow.png "расчет заработка")
+
+![](./docs/render/manager_report_flow.png "расчет заработка менеджера")
+
 ## Отправка писем
 
 ![](./docs/render/mail_flow.png "отправка писем")
@@ -37,6 +43,10 @@ https://lms.tough-dev.school/materials/1cf623e0c65f4123bf6a809b4cd89e12/
 ![](./docs/render/task_assigned.png "")
 
 ![](./docs/render/task_completed.png "")
+
+![](./docs/render/task_with_cost.png "")
+
+![](./docs/render/manager_report.png "")
 
 ![](./docs/render/mail.png "")
 

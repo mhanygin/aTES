@@ -1,0 +1,31 @@
+@startuml user_accouting_flow
+
+title Получение отчета
+
+user --> accounting: GET account
+accounting --> accountingDB: check user in JWT
+accounting --> accountingDB: create report
+accounting --> user: report
+
+@enduml
+
+@startuml add_cost_flow
+
+title Добавление расценок
+
+user --> accounting: POST cost
+accounting --> accountingDB: check user in JWT
+accounting --> accountingDB: create cost
+accounting --> user: OK
+
+@enduml
+
+@startuml manager_report_flow
+
+title Информация о заработке менеджера
+
+accounting --> accountingDB: create report
+accounting --> eventBus: produce "manager report"
+eventBus --> analytic: consume "manager report"
+
+@enduml
