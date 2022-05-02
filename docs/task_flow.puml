@@ -1,25 +1,44 @@
-@startuml task_flow
+@startuml new_task_flow
 
+title создание новой задачи
+
+!startsub addTask
 user --> taskTracker: POST add task
 taskTracker --> taskTrackerDB: check user in JWT
-taskTracker --> user: invalid user
-taskTracker --> taskTrackerDB: create task
+taskTracker --> taskTrackerDB: create task for user
+taskTracker --> taskTrackerDB: assign task
+taskTracker --> eventBus: produce "task assigned"
+eventBus --> accounting: consume "task assigned"
+eventBus --> analytic: consume "task assigned"
 taskTracker --> user: task_id
+!endsub
 
-user --> taskTracker: POST assign task_id
+@enduml
+@startuml assign_task_flow
+
+title распределение незавершенных задач
+
+!startsub assignTask
+user --> taskTracker: POST assign tasks
 taskTracker --> taskTrackerDB: check user in JWT
-taskTracker --> user: invalid user
 taskTracker --> taskTrackerDB: assign tasks
-eventBus --> accounting: processing "task"
-eventBus --> analytic: processing "task"
-taskTracker --> eventBus: event "task"
+taskTracker --> eventBus: produce "task assigned"
+eventBus --> accounting: consume "task assigned"
+eventBus --> analytic: consume "task assigned"
+!endsub
 
+@enduml
+@startuml complete_task_flow
+
+title совершение задачи
+
+!startsub completeTask
 user --> taskTracker: POST complete task_id
 taskTracker --> taskTrackerDB: check user in JWT
-taskTracker --> user: invalid user
 taskTracker --> taskTrackerDB: complete task
-taskTracker --> eventBus: event "task"
-eventBus --> accounting: processing "task"
-eventBus --> analytic: processing "task"
+taskTracker --> eventBus: produce "task completed"
+eventBus --> accounting: consume "task completed"
+eventBus --> analytic: consume "task completed"
+!endsub
 
 @enduml

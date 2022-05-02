@@ -1,17 +1,29 @@
-@startuml auth_flow
+@startuml new_user_flow
 
+title добавление пользователя
+
+!startsub addUser
 user --> auth: add user
 auth --> user: form for date
 user --> auth: form with date
-auth --> eventBus: event "user"
-eventBus --> taskTracker: processing "user"
-eventBus --> accounting: processing "user"
-eventBus --> analytic: processing "user"
+auth --> eventBus: event "add_user"
 auth --> user: OK
+eventBus --> taskTracker: processing "add_user"
+eventBus --> accounting: processing "add_user"
+eventBus --> analytic: processing "add_user"
+!endsub
 
+@enduml
+
+@startuml login_flow
+
+title авторизация пользователя
+
+!startsub login
 user --> auth: login
 auth --> user: form for login/password
 user --> auth: form with login/password
 auth --> user: JWT token
+!endsub
 
 @enduml

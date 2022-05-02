@@ -1,0 +1,8 @@
+@startuml mail_flow
+
+title отсылка писем
+
+eventBus --> sender: consume "mail"
+sender --> user: send mail
+
+@enduml

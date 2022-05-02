@@ -2,26 +2,20 @@
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
+Person(user, "user")
+
+Boundary(backend, "Backend") {
 !startsub taskTracker
 System(taskTracker, "task-tracker")
 database taskTrackerDB
-!endsub
-!startsub taskAdmin
-System(taskAdmin, "task-admin")
 !endsub
 !startsub auth
 System(auth, "auth")
 database authDB
 !endsub
-!startsub accountingAdmin
-System(accountingAdmin, "accounting-admin")
-!endsub
 !startsub accounting
 System(accounting, "accounting")
 database accountingDB
-!endsub
-!startsub analyticAdmin
-System(analyticAdmin, "analytic-admin")
 !endsub
 !startsub analytic
 System(analytic, "analytic")
@@ -33,10 +27,15 @@ System(eventBus, "eventBus")
 !startsub sender
 System(sender, "sender")
 !endsub
+}
+
+Boundary(frontend, "Frontend") {
+!startsub Admin
+System(admin, "admin")
+!endsub
+}
 
 Rel(auth, authDB, "")
-
-Rel(taskAdmin, taskTracker, "")
 
 Rel(taskTracker, eventBus, "")
 Rel(taskTracker, taskTrackerDB, "")
@@ -49,8 +48,13 @@ Rel(accounting, accountingDB, "")
 
 Rel(sender, eventBus, "")
 
-Rel(taskAdmin, auth, "")
-Rel(accountingAdmin, auth, "")
-Rel(analyticAdmin, auth, "")
+Rel(user, admin, "")
+
+Rel(admin, auth, "")
+Rel(admin, taskTracker, "")
+Rel(admin, accounting, "")
+Rel(admin, analytic, "")
+
+Rel(sender, user, "mail")
 
 @enduml

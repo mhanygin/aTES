@@ -1,0 +1,18 @@
+@startuml domains
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Boundary(user, "пользователь") {
+}
+
+Boundary(task, "задача") {
+
+}
+
+Boundary(accounting, "аккаунтинг") {
+}
+
+Boundary(analytic, "аналитика") {
+}
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml add_user
+
+title событие добавления нового пользователя
+
+object add_user {
+user_id
+login = mail
+first_name
+last_name
+role
+}
+
+@enduml
+
+@startuml task_assigned
+
+title событие назначения задачи
+
+object task_assigned {
+task_id
+user_id
+assigned_at
+}
+
+@enduml
+
+@startuml task_completed
+
+title событие выполнения задачи
+object task_completed {
+task_id
+user_id
+completed_at
+}
+
+@enduml
+
+@startuml mail
+
+title событие сообщения для пользователя
+
+object mail {
+mail_address
+body
+}
+
+@enduml
